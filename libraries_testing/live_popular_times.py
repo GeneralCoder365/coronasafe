@@ -6,9 +6,11 @@ import livepopulartimes
     # (location name) , full address, city, province/state/etc, country
 
 # a = livepopulartimes.get_populartimes_by_address("(H-Mart Dunbar) 5557 Dunbar Street, Vancouver BC, Canada", proxy=proxy)
-
 # a = livepopulartimes.get_populartimes_by_address("(H-Mart Dunbar) 5557 Dunbar Street, Vancouver BC, Canada")
+
 a = livepopulartimes.get_populartimes_by_address("(Westfield Montgomery) 7101 Democracy Blvd, Bethesda, MD, United States")
+# a = livepopulartimes.get_populartimes_by_address("7101 Democracy Blvd, Bethesda, MD, United States") <-- Less accurate
+
 # a = livepopulartimes.get_populartimes_by_address("() 10804 Brewer House Road, Rockville, MD, United States")
 
 current = a["current_popularity"]
