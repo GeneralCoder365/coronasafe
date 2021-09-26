@@ -30,7 +30,7 @@
         - state needs to be formatted in their 2-letter, all caps format
         - Sample parameters (for the Empire State Building): `g_api_key, "20 W 34th St", "New York", "NY", "10001", radius`
             - NOTE: the default value for radius is set to 0.5 (miles)
-    - functionality breakdown:
+    - Functionality Breakdown:
         - Uses address fields from user to generate a formatted address: `address_formatter(address, city, state, zip_code)`
         - The formatted address is geocoded using the Google Geocoding API: `master_geocoding(google_api_key, address, city, state, zip_code)`
             - A json request is made to access the Google Geocoding API
@@ -46,7 +46,7 @@
 2. Real time COVID-19 map that updates every 24 hours
   Libraries used: [`ssl`](https://docs.python.org/3/library/ssl.html), [`pandas`](https://pandas.pydata.org/), [`csv`](https://docs.python.org/3/library/csv.html), and [`urllib`](https://docs.python.org/3/library/urllib.html#module-urllib)
 
-    * Pip installation commands:
+    * Pip Installation Commands:
 
     * `ssl`: `pip install ssl`
     * `pandas`: `pip install pandas`
