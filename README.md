@@ -54,12 +54,13 @@
 
     * Uses pandas to read the following csv files:
 
-    * ``https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv``
-    * `https://raw.githubusercontent.com/jasonong/List-of-US-States/master/states.csv`
-    * `https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv`
+        * ``https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv``
+        * `https://raw.githubusercontent.com/jasonong/List-of-US-States/master/states.csv`
+        * `https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv`
+       
     * SSL is imported to connect plotly with the CSV files through this code:
-
     * ``ssl._create_default_https_context = ssl._create_unverified_context``
+    
     * Two maps are created:
 
     * A heat map that collects the sum of all COVID-19 cases in each state.
