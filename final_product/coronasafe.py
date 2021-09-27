@@ -13,7 +13,7 @@ import datetime as dt
 import requests
 from PIL.ImageTk import PhotoImage
  
-adress = []
+address = []
   
 class tkinterApp(tk.Tk):
      
@@ -92,24 +92,24 @@ class Page1(tk.Frame):
         Title_lbl3 = tk.Label(self, text = "State Cases", bg = "#0F111A", fg = "white")
         Title_lbl3.grid(columnspan = 8, rowspan = 2, column = 5, row = 4)
  
-        txt_adress = tk.Entry(self)
-        txt_adress.grid(columnspan = 8, column = 5, row = 3)
+        txt_address = tk.Entry(self)
+        txt_address.grid(columnspan = 8, column = 5, row = 3)
  
-        def get_adress():
-            adress = txt_adress.get()
-            adress = adress.split(",")
-            print(adress)
-            return adress
+        def get_address():
+            address = txt_address.get()
+            address = address.split(",")
+            print(address)
+            return address
  
         #Severity Level Finder
         def severity_level():
-            adress = txt_adress.get()
-            adress = adress.split(",")
-            address = adress[0]
-            apt_num = adress[1]
-            city = adress[2]
-            zip_code = adress[3]
-            state = adress[4]
+            address = txt_address.get()
+            address = address.split(",")
+            address = address[0]
+            apt_num = address[1]
+            city = address[2]
+            zip_code = address[3]
+            state = address[4]
             # major values
             # Google API Key for all Google API interactions
             g_api_key = "AIzaSyA592HwCkixwp7W8zRekEf2NZuyfKZNfvc"
@@ -329,15 +329,15 @@ class Page1(tk.Frame):
             print(risk_lvl)
             if risk_lvl == "low":
                 #Severity level Button
-                d_lvl = tk.Button(self, width = 20, bg = "green", command = lambda:get_adress())
+                d_lvl = tk.Button(self, width = 20, bg = "green", command = lambda:get_address())
                 d_lvl.grid(columnspan = 4, column = 9, row = 7)
             elif risk_lvl == "medium":
                 #Severity level Button
-                d_lvl = tk.Button(self, width = 20, bg = "orange", command = lambda:get_adress())
+                d_lvl = tk.Button(self, width = 20, bg = "orange", command = lambda:get_address())
                 d_lvl.grid(columnspan = 4, column = 8, row = 7)
             else:
                 #Severity level Button
-                d_lvl = tk.Button(self, width = 20, bg = "red", command = lambda:get_adress())
+                d_lvl = tk.Button(self, width = 20, bg = "red", command = lambda:get_address())
                 d_lvl.grid(columnspan = 4, column = 8, row = 8)
  
  
@@ -350,8 +350,8 @@ class Page1(tk.Frame):
         Title_lbl4.grid(columnspan = 8, rowspan = 2, column = 5, row = 6)
  
         #Directions
-        adress_lbl2 = tk.Label(self, text = "Input your desired address as 'street name,suite,city,zip-code,state'", bg = "#0F111A", fg = "white")
-        adress_lbl2.grid(columnspan = 8, column = 5, row = 2)
+        address_lbl2 = tk.Label(self, text = "Input your desired address as 'street name,suite,city,zip-code,state'", bg = "#0F111A", fg = "white")
+        address_lbl2.grid(columnspan = 8, column = 5, row = 2)
  
         #Text Entry
        
@@ -387,12 +387,12 @@ class Page1(tk.Frame):
  
             plot(fig)
  
-        #get_adress2
+        #get_address2
  
  
         #Enter Button
-        adress_enter = tk.Button(self, text = "Enter", bg = "#0A0C15", fg = "white", command = lambda:get_adress())
-        adress_enter.grid(columnspan = 1, column = 11, row = 3)
+        address_enter = tk.Button(self, text = "Enter", bg = "#0A0C15", fg = "white", command = lambda:get_address())
+        address_enter.grid(columnspan = 1, column = 11, row = 3)
  
         #Heat Map Button
         get_heatm_btn = tk.Button(self, text = "Get Heat Map", bg = "#0A0C15", fg = "white", command = lambda:get_hmap())
