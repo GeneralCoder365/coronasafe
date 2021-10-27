@@ -2,6 +2,6 @@
 
 import livepopulartimes
 
-results = livepopulartimes.get_places_by_search("westfield montgomery")
+results = livepopulartimes.get_places_by_search("starbucks near me")
 
 print(results)
