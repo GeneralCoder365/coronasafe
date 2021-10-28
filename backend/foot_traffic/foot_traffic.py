@@ -1,5 +1,6 @@
 import datetime as dt
 import requests
+import livepopulartimes
 
 # major values
 # Google API Key for all Google API interactions
@@ -162,7 +163,7 @@ def key_buildings_search(google_api_key, address, city, state, zip_code, search_
         return None
 
 # converts raw number of important locations to relative scale with weightage based on max important location density and current hour, as a value from 0-100
-def risk_rating_scaler(google_api_key, address, city, state, zip_code, search_radius):
+def surrounding_risk_rating(google_api_key, address, city, state, zip_code, search_radius):
     try:
         # gets number of important locations
         raw_value = int(key_buildings_search(google_api_key, address, city, state, zip_code, search_radius))
@@ -218,4 +219,4 @@ def risk_rating_scaler(google_api_key, address, city, state, zip_code, search_ra
         return "Error"
 
 # tester code
-# print(risk_rating_scaler(g_api_key, "20 W 34th St", "New York", "NY", "10001", radius))
+# print(surrounding_risk_rating(g_api_key, "20 W 34th St", "New York", "NY", "10001", radius))
