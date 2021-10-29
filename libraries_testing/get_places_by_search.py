@@ -6,6 +6,7 @@ import livepopulartimes
 
 def places_search(search_query: str) -> list:
     search_results: list = livepopulartimes.get_places_by_search(search_query)
+    # print(search_results)
     formatted_search_results = []
 
     if (len(search_results) == 0):
@@ -26,7 +27,7 @@ def places_search(search_query: str) -> list:
 def at_address_risk_rating(formatted_address):
     current_popularity = (livepopulartimes.get_populartimes_by_address(formatted_address))["current_popularity"]
     # current_popularity = None data type if no popularity data at current time
-
+    
     if (current_popularity == None):
         current_day_of_week = dt.today().weekday()
         current_hour = dt.now.hour()
@@ -36,7 +37,7 @@ def at_address_risk_rating(formatted_address):
 
     return current_popularity
 
-# print(places_search(input("Query: ")))
+print(places_search(input("Query: ")))
 # at_address_risk_rating("(Westfield Montgomery) 7101 Democracy Blvd, Bethesda, MD 20852, United States")
 # print(at_address_risk_rating("(Starbucks) 10251 Old Georgetown Rd, Bethesda, MD 20814"))
-print(at_address_risk_rating("(McDonald's) 11564 Rockville Pike, Rockville, MD 20852"))
+# print(at_address_risk_rating("(McDonald's) 11564 Rockville Pike, Rockville, MD 20852"))
