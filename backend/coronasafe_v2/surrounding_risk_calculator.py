@@ -170,7 +170,7 @@ def key_buildings_search(google_api_key, raw_address, search_radius):
         return None
 
 # converts raw number of important locations to relative scale with weightage based on max important location density and current hour, as a value from 0-100
-def surrounding_risk_rating(raw_address, search_radius = 0.5, google_api_key = "AIzaSyDIZyDl-PXON-jAk67gpnVtHSxoWiJdC3M"):
+def surrounding_risk_rating(raw_address, google_api_key, search_radius = 0.5):
     try:
         # gets number of important locations
         raw_value = int(key_buildings_search(google_api_key, raw_address, search_radius))

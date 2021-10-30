@@ -43,14 +43,14 @@ def places_search(search_query: str, g_api_key = "AIzaSyDIZyDl-PXON-jAk67gpnVtHS
 # print(places_search(input("Query: ")))
 
 
-def master_risk_calculator(raw_address: str) -> int:
+def master_risk_calculator(raw_address: str, g_api_key = "AIzaSyDIZyDl-PXON-jAk67gpnVtHSxoWiJdC3M") -> int:
     try:
         local_risk_rating = local_risk.at_address_risk_rating(raw_address)
     except KeyError:
         local_risk_rating = None
     # print(local_risk_rating)
     try:
-        surrounding_risk_rating = surrounding_risk.surrounding_risk_rating(raw_address)
+        surrounding_risk_rating = surrounding_risk.surrounding_risk_rating(raw_address, g_api_key)
     except Exception:
         surrounding_risk_rating = None
     # print(surrounding_risk_rating)
@@ -75,4 +75,4 @@ def master_risk_calculator(raw_address: str) -> int:
 
 
 # master tester code (can change [0] to another index for the list but make sure you know that it is within the length of the results - 1)
-print(master_risk_calculator(places_search(input("Query: "))[0]))
+# print(master_risk_calculator(places_search(input("Query: "))[0]))
