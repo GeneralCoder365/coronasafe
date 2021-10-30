@@ -1,21 +1,32 @@
-import datetime as dt
+from datetime import datetime as dt
 import requests
-import livepopulartimes
-
-# major values
-# Google API Key for all Google API interactions
-g_api_key = "AIzaSyA592HwCkixwp7W8zRekEf2NZuyfKZNfvc"
 
 # formats address chunks into whole address
-def address_formatter(address, city, state, zip_code):
+def address_formatter(raw_address):
+    if (("(" in raw_address) and (") " in raw_address)):
+        formatted_address_array = raw_address.split(") ")[1]
+        formatted_address_array = formatted_address_array.split(", ")
+        formatted_address_array.pop()
+        # print(formatted_address_array)
+        formatted_address = ""
+        for i in range(len(formatted_address_array) - 1):
+            formatted_address += (formatted_address_array[i] + ", ")
+        formatted_address += formatted_address_array[-1]
+        formatted_address += ", USA"
+    else:
+        return False
+
+
     # Ex: "1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA"
     # Make sure state is just 2 letters!
-    formatted_address = (address + ", " + city + ", " + state + " " + zip_code + ", USA")
     return formatted_address
 
+# print(address_formatter("(Westfield Montgomery) 7101 Democracy Blvd, Bethesda, MD 20852, United States"))
+
 # gets latitude, longitude
-def get_lat_long(google_api_key, address, city, state, zip_code):
-    input_address = address_formatter(address, city, state, zip_code)
+def get_lat_long(google_api_key, raw_address):
+    input_address = address_formatter(raw_address)
+    # print(input_address)
 
     lat = None
     long = None
@@ -28,13 +39,16 @@ def get_lat_long(google_api_key, address, city, state, zip_code):
     endpoint = f"{base_url}?address={input_address}&key={api_key}"
 
     r = requests.get(endpoint)
+    # print(r)
 
     if r.status_code not in range(200, 299):
+        # print("bob")
         return [None, None]
     
     # stores json file and attemps to retrieve latitude and longitude
     try:
         json_file = r.json()
+        # print(json_file)
         results = json_file["results"][0]
         lat = results["geometry"]["location"]["lat"]
         long = results["geometry"]["location"]["lng"]
@@ -69,16 +83,8 @@ def get_lat_long(google_api_key, address, city, state, zip_code):
         pass
         return [None, None]
 
-# master function
-def master_geocoding(google_api_key, address, city, state, zip_code):
-    return get_lat_long(google_api_key, address, city, state, zip_code)
-
-
-# half mile radius for optimal results for scale within 20 value range
-radius = 0.5
-
 # Searches for important buildings nearby, takes in API key, address parameters, and search search radius
-def key_buildings_search(google_api_key, address, city, state, zip_code, search_radius):
+def key_buildings_search(google_api_key, raw_address, search_radius):
     search_results = None
     important_types = ["airport", "amusement_park", "aquarium", "art_gallery", "bank", "casino", "clothing_store", 
     "convenience_store", "department_store", "drugstore", "movie_theater", "museum", "park", "pharmacy", "restaurant", "shopping_mall", "stadium", 
@@ -91,7 +97,8 @@ def key_buildings_search(google_api_key, address, city, state, zip_code, search_
     base_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
 
     # gets coordinates for given address
-    geo_data = master_geocoding(google_api_key, address, city, state, zip_code)
+    geo_data = get_lat_long(google_api_key, raw_address)
+    # print(geo_data)
     latitude = geo_data[0]
     longitude = geo_data[1]
 
@@ -163,12 +170,13 @@ def key_buildings_search(google_api_key, address, city, state, zip_code, search_
         return None
 
 # converts raw number of important locations to relative scale with weightage based on max important location density and current hour, as a value from 0-100
-def surrounding_risk_rating(google_api_key, address, city, state, zip_code, search_radius):
+def surrounding_risk_rating(raw_address, search_radius = 0.5, google_api_key = "AIzaSyDIZyDl-PXON-jAk67gpnVtHSxoWiJdC3M"):
     try:
         # gets number of important locations
-        raw_value = int(key_buildings_search(google_api_key, address, city, state, zip_code, search_radius))
+        raw_value = int(key_buildings_search(google_api_key, raw_address, search_radius))
+        # print("raw_value = " + str(raw_value))
         # gets current hour
-        current_hour = int(dt.datetime.now().hour)
+        current_hour = int(dt.now().hour)
         # dictionary of weights from 0.0 to 1.0 based on hour of day on 24 hour system
         time_weights = {
             0: 0.2,
@@ -205,12 +213,8 @@ def surrounding_risk_rating(google_api_key, address, city, state, zip_code, sear
         # print(weighted_value)
 
         # assigns scale rating based on weighted_value & returns it
-        if(weighted_value < 33.33):
-            return "low"
-        elif(weighted_value < 66.66):
-            return "medium"
-        elif(weighted_value <= 100):
-            return "high"
+        if((type(weighted_value) == int) or (type(weighted_value) == float)):
+            return weighted_value
         else:
             return "Error"
 
@@ -219,4 +223,4 @@ def surrounding_risk_rating(google_api_key, address, city, state, zip_code, sear
         return "Error"
 
 # tester code
-# print(surrounding_risk_rating(g_api_key, "20 W 34th St", "New York", "NY", "10001", radius))
+# print(surrounding_risk_rating("(Westfield Montgomery) 7101 Democracy Blvd, Bethesda, MD 20852, United States"))
