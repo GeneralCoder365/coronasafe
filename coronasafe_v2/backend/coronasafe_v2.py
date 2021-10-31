@@ -6,6 +6,8 @@ import requests, json
 import local_risk_calculator as local_risk
 import surrounding_risk_calculator as surrounding_risk
 
+import heat_maps
+
 
 def places_search(search_query: str, g_api_key = "AIzaSyDIZyDl-PXON-jAk67gpnVtHSxoWiJdC3M") -> list:
     base_url = "https://maps.googleapis.com/maps/api/place/textsearch/json?"
@@ -76,3 +78,21 @@ def master_risk_calculator(raw_address: str, g_api_key = "AIzaSyDIZyDl-PXON-jAk6
 
 # master tester code (can change [0] to another index for the list but make sure you know that it is within the length of the results - 1)
 # print(master_risk_calculator(places_search(input("Query: "))[0]))
+
+
+
+
+def make_us_heat_map():
+    heat_maps.make_us_heat_map()
+
+# tester code
+# make_us_heat_map()
+
+
+def make_state_case_graph(state_input):
+    # TO CHANGE!
+    print()
+    # heat_maps.make_state_case_graph(state_input)
+
+# tester code
+# make_state_case_graph("MD")
