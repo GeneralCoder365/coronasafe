@@ -2,6 +2,7 @@
 
 from datetime import datetime as dt
 import requests, json
+import argparse
 
 import local_risk_calculator as local_risk
 import surrounding_risk_calculator as surrounding_risk
@@ -96,3 +97,25 @@ def make_state_case_graph(state_input):
 
 # tester code
 # make_state_case_graph("MD")
+
+
+
+def cmd_parser():
+    # Parse arguments from command line
+    parser = argparse.ArgumentParser()
+
+    # Set up required arguments this script
+    parser.add_argument('function', type=str, help='function to call')
+    parser.add_argument('first_arg', type=str, help='first argument')
+    # parser.add_argument('second_arg', type=str, help='second argument')
+
+    # Parse the given arguments
+    args = parser.parse_args()
+
+    # Get the function based on the command line argument and 
+    # call it with the other two command line arguments as 
+    # function arguments
+    # eval(args.function)(args.first_arg, args.second_arg)
+    print(eval(args.function)(args.first_arg))
+
+# cmd_parser()
