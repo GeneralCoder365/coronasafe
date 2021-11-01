@@ -1,4 +1,5 @@
 # https://github.com/GeneralCoder365/coronasafe
+# Note: NEED TO NAVIGATE INSIDE CORONASAFE_V2 FOLDER IN TERMINAL FOR THE ENV FILE TO BE READ!
 
 from datetime import datetime as dt
 import requests, json

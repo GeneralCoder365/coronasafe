@@ -1,3 +1,6 @@
+# https://github.com/GeneralCoder365/coronasafe
+# Note: NEED TO NAVIGATE INSIDE CORONASAFE_V2 FOLDER IN TERMINAL FOR THE ENV FILE TO BE READ!
+
 # Kivy UI Core
 from kivy.app import App
 # from kivymd.app import MDApp
