@@ -1,4 +1,4 @@
-# **moco_hacks_2021**
+![alt text](https://github.com/GeneralCoder365/coronasafe/blob/main/coronasafe_v2/coronasafe_full_logo_black_background.png)
 # **Corona-Safe**
 #
 # **FILE STRUCTURE BREAKDOWN**
