@@ -51,7 +51,7 @@ class CoronaSafeUI(App):
         self.window.pos_hint = {"center_x": 0.5, "center_y":0.5}
 
         # LOGO image widget
-        self.window.add_widget(Image(source="logo.png"))
+        self.window.add_widget(Image(source="coronasafe_full_logo.png"))
 
         # WHERE TO? label widget
         self.where_to = Label(
