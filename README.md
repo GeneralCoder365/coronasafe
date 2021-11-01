@@ -1,7 +1,6 @@
 ![alt text](coronasafe_v2/coronasafe_full_logo_black_background.png)
 #
 ## **Current Version: 2.0.1**
-#
 ### **CoronaSafe is a python-based application that provides easy access to a COVID contraction risk rating for any global address. It provides easy access to a COVID contraction risk rating for any global address given by the user. CoronaSafe does this by analyzing live foot traffic data and calculating urban density (with a time weight), giving it the potential to work for any viruses that spread through close proximity and respiratory fluids.**
 #### **Additional Feature: CoronaSafe creates interactive heat maps for live US and State COVID-19 case data taken from the live New York Times .csv file.**
 #
@@ -10,11 +9,11 @@
 #
 # **FILE STRUCTURE BREAKDOWN**
 1. Final Product/Frontend:
-    - [`coronasafe_v2`](coronasafe_v2) --> [`coronasafe_v2_ui.py`](coronasafe_v2/coronasafe_v2_ui.py)
+    - [`coronasafe_v2`](coronasafe_v2) &rarr; [`coronasafe_v2_ui.py`](coronasafe_v2/coronasafe_v2_ui.py)
         - Contains frontend for CoronaSafe.
         - Interacts with [`coronasafe_v2_backend.py`](coronasafe_v2/coronasafe_v2_backend.py)
 2. Coronasafe Backend:
-    - [`coronasafe_v2`](coronasafe_v2) --> [`coronasafe_v2_backend.py`](coronasafe_v2/coronasafe_v2_backend.py)
+    - [`coronasafe_v2`](coronasafe_v2) &rarr; [`coronasafe_v2_backend.py`](coronasafe_v2/coronasafe_v2_backend.py)
         - Contains places search function, master risk calculation algorithm, and COVID case maps constructor caller.
         - Calls:
             - [`local_risk_calculator.py`](coronasafe_v2/local_risk_calculator.py)
@@ -23,17 +22,22 @@
                 - Contains surrounding risk calculation algorithm (factoring in urban density and a time of day weight).
             - [`heat_maps.py`](coronasafe_v2/heat_maps.py)
                 - Contains US and State heat map constructor functions.
-#
+---
 # **APIs USED**
 #### [`Google Geocoding API`](https://developers.google.com/maps/documentation/geocoding/overview)
 #### [`Google Places API`](https://developers.google.com/maps/documentation/places/web-service/overview)
 #### **Prerequisite**: [`Google API Key`](https://developers.google.com/maps/documentation/javascript/get-api-key)
 #
-# **LIBRARIES USED**
-#### [`Google Geocoding API`](https://developers.google.com/maps/documentation/geocoding/overview)
-#### [`Google Places API`](https://developers.google.com/maps/documentation/places/web-service/overview)
-#### **Prerequisite**: [`Google API Key`](https://developers.google.com/maps/documentation/javascript/get-api-key)
-#
+# **NON BUILT-IN LIBRARIES USED**
+- [`requests`](https://pypi.org/project/requests/)
+- [`livepopulartimes`](https://github.com/GrocerCheck/LivePopularTimes)
+- [`plotly`](https://plotly.com/python/getting-started/)
+- [`pandas`](https://pandas.pydata.org/docs/getting_started/install.html)
+- [`ssl`](https://pypi.org/project/ssl/)
+- [`argparse`](https://pypi.org/project/argparse/)
+- [`python-dotenv`](https://pypi.org/project/python-dotenv/)
+- [`pathlib`](https://pypi.org/project/pathlib/)
+---
 # **DOCUMENTATION**
 ## **Main Groups**
 1. COVID-19 risk calculator based on an input address
