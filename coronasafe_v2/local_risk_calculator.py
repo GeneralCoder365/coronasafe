@@ -4,7 +4,7 @@
 from datetime import datetime as dt
 import requests
 import livepopulartimes
-# import typing
+
 
 def places_search(search_query: str) -> list:
     search_results: list = livepopulartimes.get_places_by_search(search_query)
@@ -25,7 +25,11 @@ def places_search(search_query: str) -> list:
             formatted_search_results.append(formatted_address)
     
     return formatted_search_results
-# 10804 Brewer House Rd, Rockville, MD 20852
+
+# tester code:
+# print(places_search(input("Query: ")))
+
+
 def at_address_risk_rating(formatted_address):
     try:
         place_data = livepopulartimes.get_populartimes_by_address(formatted_address)
@@ -55,12 +59,6 @@ def at_address_risk_rating(formatted_address):
     else:
         return "Error"
 
-
-# print(places_search(input("Query: ")))
-
-# def master_risk_calculator(raw_address) -> int:
-    # remove (montgomery mall) from raw_address before passing through urban density calculator
-
-# at_address_risk_rating("(Westfield Montgomery) 7101 Democracy Blvd, Bethesda, MD 20852, United States")
+# tester code:
 # print(at_address_risk_rating("(Starbucks) 10251 Old Georgetown Rd, Bethesda, MD 20814"))
 # print(at_address_risk_rating("(McDonald's) 11564 Rockville Pike, Rockville, MD 20852"))

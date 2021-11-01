@@ -1,6 +1,7 @@
 from datetime import datetime as dt
 import requests
 
+
 # formats address chunks into whole address
 def address_formatter(raw_address):
     if (("(" in raw_address) and (") " in raw_address)):
@@ -16,12 +17,13 @@ def address_formatter(raw_address):
     else:
         return False
 
-
     # Ex: "1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA"
     # Make sure state is just 2 letters!
     return formatted_address
 
+# tester code:
 # print(address_formatter("(Westfield Montgomery) 7101 Democracy Blvd, Bethesda, MD 20852, United States"))
+
 
 # gets latitude, longitude
 def get_lat_long(google_api_key, raw_address):
@@ -82,6 +84,7 @@ def get_lat_long(google_api_key, raw_address):
         # Pass: https://www.google.com/search?q=pass+python+function&rlz=1C1SQJL_enUS806US806&oq=pass+python&aqs=chrome.2.69i57j0l6j69i65.2918j0j1&sourceid=chrome&ie=UTF-8 
         pass
         return [None, None]
+
 
 # Searches for important buildings nearby, takes in API key, address parameters, and search search radius
 def key_buildings_search(google_api_key, raw_address, search_radius):
@@ -168,6 +171,7 @@ def key_buildings_search(google_api_key, raw_address, search_radius):
         # Pass: https://www.google.com/search?q=pass+python+function&rlz=1C1SQJL_enUS806US806&oq=pass+python&aqs=chrome.2.69i57j0l6j69i65.2918j0j1&sourceid=chrome&ie=UTF-8 
         pass
         return None
+
 
 # converts raw number of important locations to relative scale with weightage based on max important location density and current hour, as a value from 0-100
 def surrounding_risk_rating(raw_address, google_api_key, search_radius = 0.5):

@@ -6,11 +6,6 @@ import ssl
 import urllib.request
 from urllib.request import urlopen
 import json
-# I don't think these imports are necessary, but I MIGHT BE WRONG
-# import os
-# import datetime as dt
-# import requests
-
 
 
 # makes US heat map
@@ -18,8 +13,6 @@ def make_us_heat_map():
     ssl._create_default_https_context = ssl._create_unverified_context
     response = urllib.request.urlopen('https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv')
     response1 = urllib.request.urlopen('https://raw.githubusercontent.com/jasonong/List-of-US-States/master/states.csv')
-
-
 
     url = "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv"
     df = pd.read_csv(url, converters={'fips': lambda x: str(x)})
@@ -35,7 +28,7 @@ def make_us_heat_map():
 
     fig = px.choropleth(df, locations=df['Abbreviation'], color=df['cases'],
                         locationmode="USA-states",
-                        # color_continuous_scale=px.colors.diverging.RdYlGn[::-1],
+                        # alternate colour scheme -> color_continuous_scale=px.colors.diverging.RdYlGn[::-1],
                         # _r reverses the hot colour scheme
                         color_continuous_scale="hot_r",
                         range_color=(0, 4500000),
@@ -48,6 +41,7 @@ def make_us_heat_map():
 
 # tester code
 # make_us_heat_map()
+
 
 # makes state case graph
 def make_state_case_graph(state_input):

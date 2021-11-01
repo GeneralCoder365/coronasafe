@@ -1,57 +1,53 @@
+from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
 from kivy.app import App
+# from kivy.uix.boxlayout import BoxLayout
+import matplotlib.pyplot as plt
+import numpy as np
 from kivy.uix.gridlayout import GridLayout
-from kivy.uix.label import Label
-from kivy.uix.image import Image
-from kivy.uix.button import Button
-from kivy.uix.textinput import TextInput
 
+# plt.plot([1, 23, 2, 4])
+# plt.ylabel('some numbers')
 
-class SayHello(App):
+class MyApp(App):
     def build(self):
+        # box = BoxLayout()
+
         # returns a window object with all it's widgets
         self.window = GridLayout()
         self.window.cols = 1
         self.window.size_hint = (0.6, 0.7)
         self.window.pos_hint = {"center_x": 0.5, "center_y":0.5}
+        
+        # box.add_widget(FigureCanvasKivyAgg(plt.gcf()))
+        self.window.add_widget(FigureCanvasKivyAgg(self.build_risk_rating_graph("bob", 100)))
+        # return self.window
+    
+    def build_risk_rating_graph(self, raw_address, risk_rating):
+        print(raw_address)
+        print(risk_rating)
+        x = raw_address
+        y = risk_rating
 
-        # image widget
-        self.window.add_widget(Image(source="logo.png"))
+        # colour choice
+        if (risk_rating < 33.33):
+            graph_colour = "lawngreen"
+        elif (risk_rating < 66.66):
+            graph_colour = "darkorange"
+        elif (risk_rating <= 100):
+            graph_colour = "firebrick"
+        else:
+            raise ValueError("Risk Rating not in range [0, 100]")
+        
+        fig = plt.figure(figsize = (3, 5))
 
-        # label widget
-        self.greeting = Label(
-                        text= "What's your name?",
-                        font_size= 18,
-                        color= '#00FFCE'
-                        )
-        self.window.add_widget(self.greeting)
+        # creating the bar plot
+        plt.bar(x, y, color = graph_colour,
+                width = 0.1)
+        plt.yticks(np.arange(0, 110, 10))
+        
+        # plt.xlabel("Courses offered")
+        # plt.ylabel("No. of students enrolled")
+        plt.title("COVID Risk Rating")
+        plt.show()
 
-        # text input widget
-        self.user = TextInput(
-                    multiline= False,
-                    padding_y= (20,20),
-                    size_hint= (1, 0.5)
-                    )
-
-        self.window.add_widget(self.user)
-
-        # button widget
-        self.button = Button(
-                      text= "GREET",
-                      size_hint= (1,0.5),
-                      bold= True,
-                      background_color ='#00FFCE',
-                      #remove darker overlay of background colour
-                      # background_normal = ""
-                      )
-        self.button.bind(on_press=self.callback)
-        self.window.add_widget(self.button)
-
-        return self.window
-
-    def callback(self, instance):
-        # change label text to "Hello + user name!"
-        self.greeting.text = "Hello " + self.user.text + "!"
-
-# run Say Hello App Calss
-if __name__ == "__main__":
-    SayHello().run()
+MyApp().run()

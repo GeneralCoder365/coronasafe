@@ -27,7 +27,6 @@ def places_search(search_query: str, g_api_key = "AIzaSyDIZyDl-PXON-jAk67gpnVtHS
     else:
         i = 0
         while ((i < 10) and (i < len(search_results))):
-            # name: str = (search_results[i])["name"]
             name: str = (search_results[i])["name"]
             # print(name)
             address: str = (search_results[i])["formatted_address"]
@@ -70,7 +69,6 @@ def master_risk_calculator(raw_address: str, g_api_key = "AIzaSyDIZyDl-PXON-jAk6
         return False
     
     cumulative_risk_rating = round(cumulative_risk_rating, 2)
-    # cumulative_risk_rating = "Cumulative Risk: " + str(cumulative_risk_rating)
     return cumulative_risk_rating
 
 # tester code
@@ -115,7 +113,6 @@ def cmd_parser():
     # Get the function based on the command line argument and 
     # call it with the other two command line arguments as 
     # function arguments
-    # eval(args.function)(args.first_arg, args.second_arg)
     print(eval(args.function)(args.first_arg))
 
 # cmd_parser()
