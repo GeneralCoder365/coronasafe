@@ -1,5 +1,4 @@
 # https://github.com/GeneralCoder365/coronasafe
-# Note: NEED TO NAVIGATE INSIDE CORONASAFE_V2 FOLDER IN TERMINAL FOR THE ENV FILE TO BE READ!
 
 from datetime import datetime as dt
 import requests, json
@@ -15,7 +14,7 @@ import heat_maps
 import os
 from dotenv import load_dotenv
 from pathlib import Path
-dotenv_path = Path(".\\g_api_key.env")
+dotenv_path = Path(".\\coronasafe_v2\\g_api_key.env")
 load_dotenv(dotenv_path=dotenv_path)
 G_API_KEY = str(os.getenv('G_API_KEY'))
 # print(G_API_KEY)
