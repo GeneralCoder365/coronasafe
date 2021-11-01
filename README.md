@@ -29,8 +29,7 @@
 #### **Prerequisite**: [`Google API Key`](https://developers.google.com/maps/documentation/javascript/get-api-key)
 #
 # **NON BUILT-IN LIBRARIES USED**
-#### [`requests`](https://pypi.org/project/requests/)
-#### [`livepopulartimes`](https://github.com/GrocerCheck/LivePopularTimes)
+#### [`requests`](https://pypi.org/project/requests/), [`livepopulartimes`](https://github.com/GrocerCheck/LivePopularTimes)
 #### [`plotly`](https://plotly.com/python/getting-started/)
 #### [`pandas`](https://pandas.pydata.org/docs/getting_started/install.html)
 #### [`ssl`](https://pypi.org/project/ssl/)
