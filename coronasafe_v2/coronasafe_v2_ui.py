@@ -9,6 +9,10 @@ from kivy.uix.textinput import TextInput
 # Importing Drop-down from the module to use in the program
 from kivy.uix.dropdown import DropDown
 
+# Custom Logo
+# from kivy.config import Config
+# Config.set('kivy','window_icon','coronasafe_v2coronasafe_app_logo.ico')
+
 # Kivy MatPlotLib
 from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
 import numpy as np
@@ -44,6 +48,7 @@ class CoronaSafeUI(App):
 # class CoronaSafeUI(MDApp):
     # CORE BUILD:
     def build(self):
+        self.icon = 'coronasafe_app_logo.png'
         # returns a window object with all it's widgets
         self.window = GridLayout()
         self.window.cols = 1
