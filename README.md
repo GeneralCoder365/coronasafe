@@ -58,7 +58,7 @@
                 - Outputs a surrounding risk rating
             3. Master Risk Calculation Algorithm:
                 - Combines both inputs (if available) to give a cumulative COVID-19 contraction risk rating
-                    - Math: <img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
+                    - Math: `<img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">`
         
 2. Real time COVID-19 maps that update every 24 hours
     * Functionality Breakdown:
