@@ -7,7 +7,7 @@
 #
 # **FILE STRUCTURE BREAKDOWN**
 1. Final Product/Frontend:
-    - `coronasafe_v2` --> `coronasafe_v2_ui.py`
+    - [a relative link](coronasafe_v2) --> `coronasafe_v2_ui.py`
         - Contains frontend for CoronaSafe.
         - Interacts with `coronasafe_v2_backend.py`
 2. Coronasafe Backend:
