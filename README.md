@@ -7,9 +7,9 @@
 #
 # **FILE STRUCTURE BREAKDOWN**
 1. Final Product/Frontend:
-    - [`coronasafe_v2`](coronasafe_v2) --> `coronasafe_v2_ui.py`
+    - [`coronasafe_v2`](coronasafe_v2) --> [`coronasafe_v2_ui.py`](coronasafe_v2/coronasafe_v2_ui.py)
         - Contains frontend for CoronaSafe.
-        - Interacts with `coronasafe_v2_backend.py`
+        - Interacts with [`coronasafe_v2_backend.py`](coronasafe_v2/coronasafe_v2_backend.py)
 2. Coronasafe Backend:
     - `coronasafe_v2` --> `coronasafe_v2_backend.py`
         - Contains places search function, master risk calculation algorithm, and COVID case maps constructor caller.
