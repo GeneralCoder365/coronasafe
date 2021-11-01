@@ -1,5 +1,9 @@
 ![alt text](https://github.com/GeneralCoder365/coronasafe/blob/main/coronasafe_v2/coronasafe_full_logo_black_background.png)
-# **Corona-Safe**
+#
+## **CoronaSafe is a python-based application that provides easy access to a COVID contraction risk rating for any global address. It provides easy access to a COVID contraction risk rating for any global address given by the user. CoronaSafe does this by analyzing live foot traffic data and calculating urban density (with a time weight), giving it the potential to work for any viruses that spread through close proximity and respiratory fluids.**
+### **Additional Feature: CoronaSafe creates interactive heat maps for live US and State COVID-19 case data taken from the live New York Times .csv file.**
+#
+#### **Known Issues**: **State COVID case maps currently not working**
 #
 # **FILE STRUCTURE BREAKDOWN**
 1. Final Product/Frontend:
@@ -8,12 +12,22 @@
         - Interacts with `coronasafe_v2_backend.py`
 2. Coronasafe Backend:
     - `coronasafe_v2` --> `coronasafe_v2_backend.py`
-        - Contains master risk calculation algorithm .
-        - `backend` --> `foot_traffic` --> `geocoding.py`
-            - Contains all code for geocoding.
+        - Contains places search function, master risk calculation algorithm, and COVID case maps constructor caller.
+        - Calls:
+            - `coronasafe_v2` --> `local_risk_calculator.py`
+                - Contains local risk calculation algorithm.
+            - `coronasafe_v2` --> `surrounding_risk_calculator.py`
+                - Contains surrounding risk calculation algorithm (factoring in urban density and a time of day weight).
+            - `coronasafe_v2` --> `heat_maps.py`
+                - Contains US and State heat map constructor functions.
         
 #
 # **APIs USED**
+#### [`Google Geocoding API`](https://developers.google.com/maps/documentation/geocoding/overview)
+#### [`Google Places API`](https://developers.google.com/maps/documentation/places/web-service/overview)
+#### **Prerequisite**: [`Google API Key`](https://developers.google.com/maps/documentation/javascript/get-api-key)
+#
+# **LIBRARIES USED**
 #### [`Google Geocoding API`](https://developers.google.com/maps/documentation/geocoding/overview)
 #### [`Google Places API`](https://developers.google.com/maps/documentation/places/web-service/overview)
 #### **Prerequisite**: [`Google API Key`](https://developers.google.com/maps/documentation/javascript/get-api-key)
