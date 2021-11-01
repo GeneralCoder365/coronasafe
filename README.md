@@ -11,16 +11,15 @@
         - Contains frontend for CoronaSafe.
         - Interacts with [`coronasafe_v2_backend.py`](coronasafe_v2/coronasafe_v2_backend.py)
 2. Coronasafe Backend:
-    - `coronasafe_v2` --> `coronasafe_v2_backend.py`
+    - [`coronasafe_v2`](coronasafe_v2) --> [`coronasafe_v2_backend.py`](coronasafe_v2/coronasafe_v2_backend.py)
         - Contains places search function, master risk calculation algorithm, and COVID case maps constructor caller.
         - Calls:
-            - `coronasafe_v2` --> `local_risk_calculator.py`
+            - [`local_risk_calculator.py`](coronasafe_v2/local_risk_calculator.py)
                 - Contains local risk calculation algorithm.
-            - `coronasafe_v2` --> `surrounding_risk_calculator.py`
+            - [`surrounding_risk_calculator.py`](coronasafe_v2/surrounding_risk_calculator.py)
                 - Contains surrounding risk calculation algorithm (factoring in urban density and a time of day weight).
-            - `coronasafe_v2` --> `heat_maps.py`
+            - [`heat_maps.py`](coronasafe_v2/heat_maps.py)
                 - Contains US and State heat map constructor functions.
-        
 #
 # **APIs USED**
 #### [`Google Geocoding API`](https://developers.google.com/maps/documentation/geocoding/overview)
