@@ -2,7 +2,7 @@
 #
 ## **Current Version: 2.0.1**
 ### **CoronaSafe is a python-based application that provides easy access to a COVID contraction risk rating for any global address. It provides easy access to a COVID contraction risk rating for any global address given by the user. CoronaSafe does this by analyzing live foot traffic data and calculating urban density (with a time weight), giving it the potential to work for any viruses that spread through close proximity and respiratory fluids.**
-#### **Additional Feature: CoronaSafe creates interactive heat maps for live US and State COVID-19 case data taken from the live New York Times .csv file.**
+#### **Additional Feature: CoronaSafe creates interactive heat/choropleth maps for live US and State COVID-19 case data taken from the live New York Times .csv file.**
 #
 ### **Coming Soon**: **Server hosting backend** &rarr; **Website, Desktop/iOS/Android App Versions**
 #### **Known Issues**: **State COVID case maps currently not working**
@@ -50,59 +50,58 @@
             1. Local Risk Calculation Algorithm:
                 - Uses livepopulartimes library to get current live popular times (works best for named places such as a mall)
                     - If the live popular times isn't available, it cross references with the average popularity at the current day and time
-                - Outputs a local risk rating
+                - Outputs a local risk rating between 0 - 100
             2. Surrounding Risk Calculation Algorithm:
                 - Uses Google Geocoding API to transform address into coordinates that get passed through the Google Places API to output named places in a 0.5 mile radius around the given address
                 - Generates a list of "popular" locations within the search radius such as airports and mall
                 - Factors in the number of "popular" locations within the search radius and time-weights based on the current time of day
-                - Outputs a surrounding risk rating
+                - Outputs a surrounding risk rating between 0 - 100
             3. Master Risk Calculation Algorithm:
-                - Combines both inputs (if available) to give a cumulative COVID-19 contraction risk rating
-                    - Math: `<img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">`
+                - Combines both inputs (if available) to give a cumulative COVID-19 contraction risk rating between 0 - 100
+                    - Math: `(local_risk_rating * 0.8) + (surrounding_risk_rating * 0.2)`
         
 2. Real time COVID-19 maps that update every 24 hours
-    * Functionality Breakdown:
+    - Functionality Breakdown:
 
-      * Uses pandas to read the following csv files:
+      - Uses pandas to read the following csv files:
 
-          * ``https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv``
-          * `https://raw.githubusercontent.com/jasonong/List-of-US-States/master/states.csv`
-          * `https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv`
+          - ``https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv``
+          - `https://raw.githubusercontent.com/jasonong/List-of-US-States/master/states.csv`
+          - `https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv`
         
-      * SSL is imported to connect plotly with the CSV files through this code:
-          * ``ssl._create_default_https_context = ssl._create_unverified_context``
+      - SSL is imported to connect plotly with the CSV files through this code:
+          - ``ssl._create_default_https_context = ssl._create_unverified_context``
       
-      * Two maps are created:
-
-      * A heat map that collects the sum of all COVID-19 cases in each state.
-      * A choropleth map that collects the sum of all COVID-19 cases in each county at a particular state that the user inputs.
+      - Two maps are created:
+          1. A heat map that collects the sum of all COVID-19 cases in each state.
+          2. A choropleth map that collects the sum of all COVID-19 cases in each county at a particular state that the user inputs.
       
-      * Choropleth map:
-      * Pandas iterates through all the columns that contain the keyword for a particular state:
-        * A manually coded example (doesn't take into account for user input)': ``df_Maryland = df[ df['state'] == "Maryland"]``
-      * Pandas is used to set the date to the current date by using the built-in  function `max()` function and then is used to iterate through all COVID-19 cases for the current date in that particular state:
-        * `last_date = df['date'].max()`
-        * `df = df_Maryland[ df_Maryland['date'] == last_date]` (manually coded example)
-      * Pandas is also used calculate the sum of all COVID-19 cases and deaths for a particular state through the built-in function `sum()`:
-        * `df['cases'].sum()`
-        * `df['deaths'].sum()`
-        * This iterates through all cases and deaths for each county for that state in the csv file.
-      * Plotly is used to make a choropleth map that iterates through the COVID-19 data for all counties in order to create the map:
-        * `fig = px.choropleth(df, geojson=counties, locations='fips', color='cases', color_continuous_scale="Viridis", range_color=(0, 20000) )`
+      1. Choropleth map:
+          - Pandas iterates through all the columns that contain the keyword for a particular state:
+            - A manually coded example (doesn't take into account for user input)': ``df_Maryland = df[ df['state'] == "Maryland"]``
+          - Pandas is used to set the date to the current date by using the built-in  function `max()` function and then is used to iterate through all COVID-19 cases for the current date in that particular state:
+            - `last_date = df['date'].max()`
+            - `df = df_Maryland[ df_Maryland['date'] == last_date]` (manually coded example)
+          - Pandas is also used calculate the sum of all COVID-19 cases and deaths for a particular state through the built-in function `sum()`:
+            - `df['cases'].sum()`
+            - `df['deaths'].sum()`
+            - This iterates through all cases and deaths for each county for that state in the csv file.
+          - Plotly is used to make a choropleth map that iterates through the COVID-19 data for all counties in order to create the map:
+            - `fig = px.choropleth(df, geojson=counties, locations='fips', color='cases', color_continuous_scale="Viridis", range_color=(0, 20000) )`
         
-      * Heat map:
-      * Pandas is again used set the date to the current date by using the built-in  function `max()` function and then is used to iterate through all COVID-19 cases for the current date in that particular state:
+      2. Heat map:
+          - Pandas is again used set the date to the current date by using the built-in  function `max()` function and then is used to iterate through all COVID-19 cases for the current date in that particular state:
 
-        * `last_date = df['date'].max()`
-        * `df = df[ df['date'] == last_date]`
-      * Pandas is also used to calculate the sum of all COVID-19 cases and deaths in the U.S. through the built-in function `sum()`:
+            - `last_date = df['date'].max()`
+            - `df = df[ df['date'] == last_date]`
+          - Pandas is also used to calculate the sum of all COVID-19 cases and deaths in the U.S. through the built-in function `sum()`:
 
-        * `df['cases'].sum()`
-        * `df['deaths'].sum()`
-        * This iterates through all cases and deaths for for each state in the csv file which gets added up to calculate the sum of all COVID-19 cases and deaths in the U.S.
-      * Pandas is used to calculate the sum of all COVID-19 cases and deaths in each U.S. state through the built-in function `sum()` and `to_frame`:
+            - `df['cases'].sum()`
+            - `df['deaths'].sum()`
+            - This iterates through all cases and deaths for for each state in the csv file which gets added up to calculate the sum of all COVID-19 cases and deaths in the U.S.
+          - Pandas is used to calculate the sum of all COVID-19 cases and deaths in each U.S. state through the built-in function `sum()` and `to_frame`:
 
-        * `df = df.groupby('state')['cases'].sum().to_frame()`
-      * Plotly is used to make a heat map that iterates through the COVID-19 data for all states in order to create the map:
+            - `df = df.groupby('state')['cases'].sum().to_frame()`
+          - Plotly is used to make a heat map that iterates through the COVID-19 data for all states in order to create the map:
 
-        * `fig = px.choropleth(df, locations=df['Abbreviation'], color=df['cases'], locationmode="USA-states", color_continuous_scale="hot", range_color=(0, 4500000), scope="usa"))`
+            - `fig = px.choropleth(df, locations=df['Abbreviation'], color=df['cases'], locationmode="USA-states", color_continuous_scale="hot", range_color=(0, 4500000), scope="usa"))`
