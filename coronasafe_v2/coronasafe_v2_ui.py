@@ -92,6 +92,7 @@ class CoronaSafeUI(App):
                       # background_normal = ""
                       )
         self.window.add_widget(self.risk_button)
+        self.risk_button.disabled = True
         self.risk_button.bind(on_press=self.get_risk_rating)
 
         # US COVID MAP button widget
@@ -131,21 +132,18 @@ class CoronaSafeUI(App):
                 # binding the button to show the text when selected
                 result.bind(on_release = lambda btn: self.search_results_dropdown.select(btn.text))
 
-
                 # then add the button inside the dropdown
                 self.search_results_dropdown.add_widget(result)
 
             self.search_button.bind(on_release = self.search_results_dropdown.open)
-            # self.search_results_dropdown.open
             # one last thing, listen for the selection in the 
             # dropdown list and assign the data to the button text.
             
             self.search_results_dropdown.bind(on_select = lambda instance, x: setattr(self.search_query, 'text', x))
 
-            self.search_button.disabled = True
+            self.risk_button.disabled = False
         
     
-    # def get_chosen_address(x, self, event):
     def get_risk_rating(self, event):
         raw_address = self.search_query.text
 
@@ -170,10 +168,10 @@ class CoronaSafeUI(App):
         y = risk_rating
 
         # colour choice
-        if (risk_rating < 33.33):
+        if (risk_rating <= 33.33):
             graph_colour = "lawngreen"
             x = "LOW"
-        elif (risk_rating < 66.66):
+        elif (risk_rating <= 66.66):
             graph_colour = "darkorange"
             x = "MEDIUM"
         elif (risk_rating <= 100):
