@@ -1,18 +1,17 @@
 # **moco_hacks_2021**
 # **Corona-Safe**
 #
-# [**PROJECT BREAKDOWN**](https://docs.google.com/presentation/d/17h2YCBYd2IV8gmgW2EP3E4Fs_UIJhe6aSL9WO3uOtms/edit?usp=sharing)
-#
 # **FILE STRUCTURE BREAKDOWN**
-1. Final Product:
-    - `final_product` --> `coronasafe.py`
-        - Contains all the code for the project, including GUI
-            - This is because importing other python files and external functions is difficult in Tkinter.
-2. Foot Traffic Backend (not run in final product):
-    - `backend` --> `foot_traffic` --> `foot_traffic.py`
-        - Contains all code for foot traffic processing & geocoding.
-    - `backend` --> `foot_traffic` --> `geocoding.py`
-        - Contains all code for geocoding.
+1. Final Product/Frontend:
+    - `coronasafe_v2` --> `coronasafe_v2_ui.py`
+        - Contains frontend for CoronaSafe.
+        - Interacts with `coronasafe_v2_backend.py`
+2. Coronasafe Backend:
+    - `coronasafe_v2` --> `coronasafe_v2_backend.py`
+        - Contains master risk calculation algorithm .
+        - `backend` --> `foot_traffic` --> `geocoding.py`
+            - Contains all code for geocoding.
+        
 #
 # **APIs USED**
 #### [`Google Geocoding API`](https://developers.google.com/maps/documentation/geocoding/overview)
