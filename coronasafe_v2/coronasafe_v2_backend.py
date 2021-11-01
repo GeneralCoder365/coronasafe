@@ -10,7 +10,17 @@ import surrounding_risk_calculator as surrounding_risk
 import heat_maps
 
 
-def places_search(search_query: str, g_api_key = "AIzaSyDIZyDl-PXON-jAk67gpnVtHSxoWiJdC3M") -> list:
+# Getting Google API Key
+import os
+from dotenv import load_dotenv
+from pathlib import Path
+dotenv_path = Path(".\\g_api_key.env")
+load_dotenv(dotenv_path=dotenv_path)
+G_API_KEY = str(os.getenv('G_API_KEY'))
+# print(G_API_KEY)
+
+
+def places_search(search_query: str, g_api_key = G_API_KEY) -> list:
     base_url = "https://maps.googleapis.com/maps/api/place/textsearch/json?"
     # get method of requests module
     # return response object
@@ -45,7 +55,7 @@ def places_search(search_query: str, g_api_key = "AIzaSyDIZyDl-PXON-jAk67gpnVtHS
 # print(places_search(input("Query: ")))
 
 
-def master_risk_calculator(raw_address: str, g_api_key = "AIzaSyDIZyDl-PXON-jAk67gpnVtHSxoWiJdC3M") -> int:
+def master_risk_calculator(raw_address: str, g_api_key = G_API_KEY) -> int:
     try:
         local_risk_rating = local_risk.at_address_risk_rating(raw_address)
     except KeyError:
