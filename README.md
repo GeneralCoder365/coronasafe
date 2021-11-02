@@ -1,4 +1,4 @@
-![alt text](coronasafe_v2/coronasafe_full_logo_black_background.png)
+![CoronaSafe Logo](coronasafe_v2/coronasafe_full_logo_black_background.png)
 #
 ## **Current Version: 2.0.1** &#124; **Developed in Python**
 #
@@ -106,6 +106,6 @@
 ### **Special thanks to Charles Wang for the awesome logo!**
 #
 # **THE JOURNEY**
-#### **- V1 of CoronaSafe was born during the 2021 MocoHacks Hackathon: Lorenz Driza, Salamun Nuhin, and Ainesh Chatterjee built the first version of the app with just the surrounding risk calculation algorithm (we developed this cat the last minute because the livepopulartimes library was not working at the time) and the heat maps, and wrapped it in a Tkinter GUI**
+#### **- V1 of CoronaSafe was born during the 2021 MocoHacks Hackathon: Lorenz Driza, Salamun Nuhin, and Ainesh Chatterjee built the first version of the app with just the surrounding risk calculation algorithm (we developed this at the last minute because the livepopulartimes library was not working at the time) and the heat maps, and wrapped it in a Tkinter GUI**
 #### **- V2 of CoronaSafe was created for the 2021 Congressional App Challenge: Ainesh Chatterjee reused the backend code for the heat maps and the surrounding risk calculation, added the local risk calculation algorithm, built the master risk calculation, and wrapped it in a new Kivy Python GUI**
 - Botond Parkanyi developed a C# version of the V2 GUI but it had trouble getting data from the Python backend
