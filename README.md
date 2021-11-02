@@ -17,11 +17,11 @@
     - [`coronasafe_v2`](coronasafe_v2) &rarr; [`coronasafe_v2_backend.py`](coronasafe_v2/coronasafe_v2_backend.py)
         - Contains places search function, master risk calculation algorithm, and COVID case maps constructor caller.
         - Calls:
-            - [`local_risk_calculator.py`](coronasafe_v2/local_risk_calculator.py)
+            1. [`local_risk_calculator.py`](coronasafe_v2/local_risk_calculator.py)
                 - Contains local risk calculation algorithm.
-            - [`surrounding_risk_calculator.py`](coronasafe_v2/surrounding_risk_calculator.py)
+            2. [`surrounding_risk_calculator.py`](coronasafe_v2/surrounding_risk_calculator.py)
                 - Contains surrounding risk calculation algorithm (factoring in urban density and a time of day weight).
-            - [`heat_maps.py`](coronasafe_v2/heat_maps.py)
+            3. [`heat_maps.py`](coronasafe_v2/heat_maps.py)
                 - Contains US and State heat map constructor functions.
 #
 # **APIs USED**
@@ -36,33 +36,34 @@
 ## **Main Functions**
 1. COVID-19 risk calculator based on a search query (can be something like "starbucks near me" or an address)
     - Parameters: search query
+
     - Functionality Breakdown:
         - Takes a search query in input field from user and runs it through a novel COVID-19 contraction risk calculation algorithm
         - Search Places: Takes in the search query, passes through the Google Maps Places API and outputs results to user as a dropdown
             - User then selects one of the addresses
+
         - COVID-19 Contraction Risk Calculation Algorithm: Generates risk level bar graph (through matplotlib) for the user chosen address
             1. Local Risk Calculation Algorithm:
                 - Uses livepopulartimes library to get current live popular times (works best for named places such as a mall)
                     - If the live popular times isn't available, it cross references with the average popularity at the current day and time
                 - Outputs a local risk rating between 0 - 100
+
             2. Surrounding Risk Calculation Algorithm:
                 - Uses Google Geocoding API to transform address into coordinates that get passed through the Google Places API to output named places in a 0.5 mile radius around the given address
+                
                 - Generates a list of "popular" locations within the search radius such as airports and mall
                 - Factors in the number of "popular" locations within the search radius and time-weights based on the current time of day
                 - Outputs a surrounding risk rating between 0 - 100
             3. Master Risk Calculation Algorithm:
                 - Combines both inputs (if available) to give a cumulative COVID-19 contraction risk rating between 0 - 100
-                    - Math: `(local_risk_rating * 0.8) + (surrounding_risk_rating * 0.2)`
+                    - Math: `cumulative_risk_rating = (local_risk_rating * 0.8) + (surrounding_risk_rating * 0.2)`
         
 2. Real time COVID-19 maps that update every 24 hours
     - Functionality Breakdown:
-
       - Uses pandas to read the following csv files:
-
           - ``https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv``
           - `https://raw.githubusercontent.com/jasonong/List-of-US-States/master/states.csv`
           - `https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv`
-        
       - SSL is imported to connect plotly with the CSV files through this code:
           - ``ssl._create_default_https_context = ssl._create_unverified_context``
       
@@ -85,19 +86,15 @@
         
       2. Heat map:
           - Pandas is again used set the date to the current date by using the built-in  function `max()` function and then is used to iterate through all COVID-19 cases for the current date in that particular state:
-
             - `last_date = df['date'].max()`
             - `df = df[ df['date'] == last_date]`
           - Pandas is also used to calculate the sum of all COVID-19 cases and deaths in the U.S. through the built-in function `sum()`:
-
             - `df['cases'].sum()`
             - `df['deaths'].sum()`
             - This iterates through all cases and deaths for for each state in the csv file which gets added up to calculate the sum of all COVID-19 cases and deaths in the U.S.
           - Pandas is used to calculate the sum of all COVID-19 cases and deaths in each U.S. state through the built-in function `sum()` and `to_frame`:
-
             - `df = df.groupby('state')['cases'].sum().to_frame()`
           - Plotly is used to make a heat map that iterates through the COVID-19 data for all states in order to create the map:
-
             - `fig = px.choropleth(df, locations=df['Abbreviation'], color=df['cases'], locationmode="USA-states", color_continuous_scale="hot", range_color=(0, 4500000), scope="usa"))`
 #
 # **THE INSPIRATION**
