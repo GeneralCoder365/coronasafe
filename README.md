@@ -2,7 +2,7 @@
 #
 ## **Current Version: 2.0.1** &#124; **Developed in Python**
 #
-### **CoronaSafe is a python-based application that provides easy access to a COVID contraction risk rating for any global address. It provides easy access to a COVID contraction risk rating for any global address given by the user. CoronaSafe does this by analyzing live foot traffic data and calculating urban density (with a time weight), giving it the potential to work for any viruses that spread through close proximity and respiratory fluids.**
+### **CoronaSafe is a python-based application that provides easy access to a COVID-19 contraction risk rating for any global address given by the user. It does this by analyzing live foot traffic data and calculating urban density (with a time weight), giving it the potential to work for any viruses that spread through close proximity and respiratory fluids.**
 #### **Additional Feature: CoronaSafe creates interactive heat/choropleth maps for live US and State COVID-19 case data taken from the live New York Times .csv file.**
 #
 ### **Coming Soon**: **Server hosting backend** &rarr; **Website, Desktop/iOS/Android App Versions**
