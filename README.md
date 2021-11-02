@@ -1,6 +1,8 @@
 ![alt text](coronasafe_v2/coronasafe_full_logo_black_background.png)
 #
 ## **Current Version: 2.0.1**
+### **Developed in Python**
+#
 ### **CoronaSafe is a python-based application that provides easy access to a COVID contraction risk rating for any global address. It provides easy access to a COVID contraction risk rating for any global address given by the user. CoronaSafe does this by analyzing live foot traffic data and calculating urban density (with a time weight), giving it the potential to work for any viruses that spread through close proximity and respiratory fluids.**
 #### **Additional Feature: CoronaSafe creates interactive heat/choropleth maps for live US and State COVID-19 case data taken from the live New York Times .csv file.**
 #
@@ -98,3 +100,16 @@
           - Plotly is used to make a heat map that iterates through the COVID-19 data for all states in order to create the map:
 
             - `fig = px.choropleth(df, locations=df['Abbreviation'], color=df['cases'], locationmode="USA-states", color_continuous_scale="hot", range_color=(0, 4500000), scope="usa"))`
+#
+# **THE INSPIRATION**
+#### **Since 2020, we saw and felt the internal panic that people experience every time they go out during the pandemic. The question "Is today the day I get sick?" is always in the back of everyone's minds. So, we wanted to create an application that allowed people to be more informed about the world around them. We wanted people to be able to find how busy a place would be with extreme ease and to make it even more convenient, give them a simple "threat" bar to look at. The goal behind the app was an incredibly simple UI with a powerful backend so that the user had a seamless experience while the high-quality backend development ensured quality results every time. To add to this, since our goal was to provide convenient access to information, we also included a button that opens an interactive heat map of live US COVID-19 case data. It sources the data directly from the constantly updating New York Times COVID cases .csv file.**
+#
+# **THE TEAM**
+### **V2 Team: Ainesh Chatterjee and Botond Parkanyi**
+### **V1 Team: Ainesh Chatterjee, Lorenz Driza and Salamun Nuhin**
+## **Special thanks to Charles Wang for the awesome logo!**
+#
+# **THE JOURNEY**
+#### **V1 of CoronaSafe was born during the 2021 MocoHacks Hackathon: Lorenz Driza, Salamun Nuhin, and Ainesh Chatterjee built the first version of the app with just the surrounding risk calculation algorithm (we developed this cat the last minute because the livepopulartimes library was not working at the time) and the heat maps, and wrapped it in a Tkinter GUI**
+#### **V2 of CoronaSafe was created for the 2021 Congressional App Challenge: Ainesh Chatterjee reused the backend code for the heat maps and the surrounding risk calculation, added the local risk calculation algorithm, built the master risk calculation, and wrapped it in a new Kivy Python GUI**
+    - Botond Parkanyi developed a C# version of the GUI but we had trouble getting data from the Python backend
