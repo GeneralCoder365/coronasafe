@@ -101,8 +101,8 @@
 #### **Since 2020, we saw and felt the internal panic that people experience every time they go out during the pandemic. The question "Is today the day I get sick?" is always in the back of everyone's minds. So, we wanted to create an application that allowed people to be more informed about the world around them. We wanted people to be able to find how busy a place would be with extreme ease and to make it even more convenient, give them a simple "threat" bar to look at. The goal behind the app was an incredibly simple UI with a powerful backend so that the user had a seamless experience while the high-quality backend development ensured quality results every time. To add to this, since our goal was to provide convenient access to information, we also included a button that opens an interactive heat map of live US COVID-19 case data. It sources the data directly from the constantly updating New York Times COVID cases .csv file.**
 #
 # **THE TEAM**
-### **V2 Team: Ainesh Chatterjee and Botond Parkanyi**
-### **V1 Team: Ainesh Chatterjee, Lorenz Driza and Salamun Nuhin**
+## **V2 Team: Ainesh Chatterjee and Botond Parkanyi**
+## **V1 Team: Ainesh Chatterjee, Lorenz Driza and Salamun Nuhin**
 ## **Special thanks to Charles Wang for the awesome logo!**
 #
 # **THE JOURNEY**
