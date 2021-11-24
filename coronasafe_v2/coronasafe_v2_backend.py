@@ -29,7 +29,7 @@ def places_search(search_query: str, g_api_key = G_API_KEY) -> list:
     # stores data in json file
     json_file = r.json()
     search_results = json_file["results"]
-    # print(search_results)
+    
     formatted_search_results = []
 
     if (len(search_results) == 0):
@@ -48,7 +48,7 @@ def places_search(search_query: str, g_api_key = G_API_KEY) -> list:
             formatted_search_results.append(formatted_address)
 
             i += 1
-    
+
     return formatted_search_results
 
 # tester code
