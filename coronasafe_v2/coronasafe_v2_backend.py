@@ -29,7 +29,7 @@ def places_search(search_query: str, g_api_key = G_API_KEY) -> list:
     # stores data in json file
     json_file = r.json()
     search_results = json_file["results"]
-    
+
     formatted_search_results = []
 
     if (len(search_results) == 0):
@@ -60,12 +60,12 @@ def master_risk_calculator(raw_address: str, g_api_key = G_API_KEY) -> int:
         local_risk_rating = local_risk.at_address_risk_rating(raw_address)
     except KeyError:
         local_risk_rating = None
-    # print(local_risk_rating)
+
     try:
         surrounding_risk_rating = surrounding_risk.surrounding_risk_rating(raw_address, g_api_key)
     except Exception:
         surrounding_risk_rating = None
-    # print(surrounding_risk_rating)
+    
     cumulative_risk_rating = 0
 
     if (((type(local_risk_rating) == int) or (type(local_risk_rating) == float)) and 

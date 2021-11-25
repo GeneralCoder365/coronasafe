@@ -20,6 +20,11 @@ def search():
     data = cs_backend.places_search(thingToSearch)
     return {'data':data}, 200
 
+@app.route('/getNumbers/', methods=["GET"])
+def getNumbers():
+    thingToSearch = request.args.get('search_query')
+    data = cs_backend.master_risk_calculator(thingToSearch)
+    return {'data':data}, 200
 
 app.debug = True
 app.run()  
