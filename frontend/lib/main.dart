@@ -1,15 +1,11 @@
-import 'dart:async';
-
-import 'package:after_layout/after_layout.dart';
+import 'onboardingcontrol.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:google_maps_test/onboarding.dart';
 import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorderable_list.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-import 'onboardingsetup.dart';
+import 'onboarding.dart';
 
 main() => runApp(const MyApp());
 
@@ -21,44 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: const CheckOnboarding(),
-      theme: ThemeData(fontFamily: 'CenturyGothic'),
-    );
-  }
-}
-
-class CheckOnboarding extends StatefulWidget {
-  const CheckOnboarding({Key? key}) : super(key: key);
-
-  @override
-  CheckOnboardingState createState() => CheckOnboardingState();
-}
-
-class CheckOnboardingState extends State<CheckOnboarding>
-    with AfterLayoutMixin<CheckOnboarding> {
-  Future checkFirstSeen() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool _seen = (prefs.getBool('seen') ?? false);
-
-    if (_seen) {
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const MyHomePage()));
-    } else {
-      await prefs.setBool('seen', true);
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => OnboardingScreen()));
-    }
-  }
-
-  @override
-  void afterFirstLayout(BuildContext context) => checkFirstSeen();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[800],
-      body: const Center(
-        child: Text('Loading...'),
-      ),
+      theme: ThemeData(fontFamily: 'Manrope'),
     );
   }
 }
@@ -127,13 +86,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   onSubmitted: (query) {
                     populateList(query);
                   },
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Search For A Place You\'ve Been',
                     hintStyle: TextStyle(
                       color: Colors.tealAccent,
                     ),
                   ),
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.tealAccent,
                   ),
                 ),
@@ -290,35 +249,106 @@ class _ResultScreenState extends State<ResultScreen> {
             child: Column(
               children: [
                 Container(
-                  padding:
-                      EdgeInsets.only(bottom: 5, top: 20, left: 10, right: 50),
-                  width: double.infinity,
-                  child: Text(
-                    'Name:',
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontFamily: 'CenturyGothic',
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(bottom: 20, left: 10, right: 50),
+                  padding: const EdgeInsets.only(
+                      bottom: 5, top: 20, left: 10, right: 50),
                   width: double.infinity,
                   child: Text(
                     place.name,
-                    style: const TextStyle(color: Colors.tealAccent),
-                    textAlign: TextAlign.left,
+                    style: const TextStyle(
+                      fontSize: 25,
+                      fontFamily: 'Manrope',
+                      color: Colors.tealAccent,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height / 2,
+                    child: const GoogleMap(
+                      initialCameraPosition: CameraPosition(
+                        target: LatLng(10, -10),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Pages(
+          widget: SafeArea(
+            child: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(
+                      bottom: 5, top: 20, left: 10, right: 50),
+                  width: double.infinity,
+                  child: const Text(
+                    'Chance of Contracting Covid',
+                    style: TextStyle(
+                      fontSize: 35,
+                      fontFamily: 'Manrope',
+                      color: Colors.tealAccent,
+                    ),
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 2,
-                  child: const GoogleMap(
-                    initialCameraPosition: CameraPosition(
-                      target: LatLng(
-                        84.20942,
-                        -26.55092,
-                      ),
+                  height: MediaQuery.of(context).size.height / 1.5,
+                  child: Card(
+                    elevation: 10,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4)),
+                    color: Colors.grey[800],
+                    child: _BarChart(place: place),
+                  ),
+                ),
+                Text(
+                  getChancesName(),
+                  style: TextStyle(
+                    fontSize: 50,
+                    color: chooseColors(),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+        Pages(
+          widget: SafeArea(
+            child: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(
+                      bottom: 5, top: 20, left: 10, right: 50),
+                  width: double.infinity,
+                  child: const Text(
+                    'State Graph',
+                    style: TextStyle(
+                      fontSize: 35,
+                      fontFamily: 'Manrope',
+                      color: Colors.tealAccent,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Pages(
+          widget: SafeArea(
+            child: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(
+                      bottom: 5, top: 20, left: 10, right: 50),
+                  width: double.infinity,
+                  child: const Text(
+                    'US Heat Map',
+                    style: TextStyle(
+                      fontSize: 35,
+                      fontFamily: 'Manrope',
+                      color: Colors.tealAccent,
                     ),
                   ),
                 ),

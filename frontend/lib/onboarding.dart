@@ -54,8 +54,8 @@ class OnboardingState extends State<Onboarding> {
                 count: widget.pages.length,
                 effect: const WormEffect(
                   activeDotColor: Colors.tealAccent,
-                  dotHeight: 1,
-                  spacing: 0,
+                  dotHeight: 16,
+                  spacing: 3,
                 ),
               ),
             ),

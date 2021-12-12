@@ -14,7 +14,7 @@ import heat_maps
 import os
 from dotenv import load_dotenv
 from pathlib import Path
-dotenv_path = Path(".\\coronasafe_v2\\g_api_key.env")
+dotenv_path = Path('coronasafe_v2/g_api_key.env')
 load_dotenv(dotenv_path=dotenv_path)
 G_API_KEY = str(os.getenv('G_API_KEY'))
 # print(G_API_KEY)

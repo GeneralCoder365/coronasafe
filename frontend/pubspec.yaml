@@ -40,6 +40,7 @@ dependencies:
   fl_chart: ^0.40.2
   
   
+  
 
 
 
@@ -90,9 +91,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-     - family: CenturyGothic
+     - family: Manrope
        fonts:
-         - asset: assets/century_gothic.ttf
+         - asset: assets/Manrope-Medium.ttf
 
 
   # For details regarding fonts from package dependencies,

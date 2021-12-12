@@ -18,6 +18,7 @@ api = Api(app)
 def search():
     thingToSearch = request.args.get('search_query')
     data = cs_backend.places_search(thingToSearch)
+    print(data)
     return {'data':data}, 200
 
 @app.route('/getNumbers/', methods=["GET"])
