@@ -1,10 +1,15 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
+
 import 'onboardingcontrol.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorderable_list.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'dart:io';
 
+import 'package:webview_flutter/webview_flutter.dart';
 import 'onboarding.dart';
 
 main() => runApp(const MyApp());
@@ -121,6 +126,10 @@ class _MyHomePageState extends State<MyHomePage> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
+        Divider(
+          height: 3,
+          color: Colors.black,
+        ),
         InkWell(
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -168,7 +177,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     const TextStyle(color: Colors.tealAccent),
                               ),
                             ],
-                          ))
+                          )),
                     ],
                   ),
                 ),
@@ -238,9 +247,13 @@ class _ResultScreenState extends State<ResultScreen> {
     }
   }
 
+  void initState() {
+    super.initState();
+    buildBody(place.full);
+  }
+
   @override
   Widget build(BuildContext context) {
-    buildBody(place.full);
     return Onboarding(
       backgroundColor: Colors.grey[800],
       pages: [
@@ -336,7 +349,7 @@ class _ResultScreenState extends State<ResultScreen> {
           ),
         ),
         Pages(
-          widget: SafeArea(
+          widget: Expanded(
             child: Column(
               children: [
                 Container(
@@ -352,67 +365,27 @@ class _ResultScreenState extends State<ResultScreen> {
                     ),
                   ),
                 ),
+                Container(
+                  height: MediaQuery.of(context).size.height / 2,
+                  child: WebView(
+                    initialUrl: 'https://flutter.dev',
+                    javascriptMode: JavascriptMode.unrestricted,
+                    gestureNavigationEnabled: true,
+                    gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+                      // 2
+                      Factory<VerticalDragGestureRecognizer>(
+                          () => VerticalDragGestureRecognizer()),
+                      Factory<HorizontalDragGestureRecognizer>(
+                          () => HorizontalDragGestureRecognizer()),
+                    },
+                  ),
+                ),
               ],
             ),
           ),
         ),
       ],
     );
-    // return Scaffold(
-    //     backgroundColor: Colors.grey[800],
-    //     body: SafeArea(
-    //       child: SingleChildScrollView(
-    //         child: ConstrainedBox(
-    //           constraints: BoxConstraints(),
-    //           child: Column(
-    //             children: [
-    //               Row(
-    //                 children: [
-    //                   BackButton(
-    //                     color: Colors.tealAccent,
-    //                     onPressed: () {
-    //                       Navigator.of(context).pushReplacement(
-    //                           MaterialPageRoute(
-    //                               builder: (context) => const MyHomePage()));
-    //                     },
-    //                   ),
-    //                 ],
-    //               ),
-    //               Padding(
-    //                 padding: EdgeInsets.only(right: 30, left: 30),
-    //                 child: Text(
-    //                   'Name: ' +
-    //                       place.name.toString() +
-    //                       '\n' 'Address:' +
-    //                       place.address,
-    //                   style: const TextStyle(
-    //                     color: Colors.tealAccent,
-    //                     fontSize: 20,
-    //                   ),
-    //                 ),
-    //               ),
-    //               Container(
-    //                 height: MediaQuery.of(context).size.height / 1.5,
-    //                 child: Card(
-    //                   elevation: 10,
-    //                   shape: RoundedRectangleBorder(
-    //                       borderRadius: BorderRadius.circular(4)),
-    //                   color: Colors.grey[800],
-    //                   child: _BarChart(place: place),
-    //                 ),
-    //               ),
-    //               Text(
-    //                 getChancesName(),
-    //                 style: TextStyle(
-    //                   fontSize: 50,
-    //                   color: chooseColors(),
-    //                 ),
-    //               )
-    //             ],
-    //           ),
-    //         ),
-    //       ),
-    //     ));
   }
 }
 

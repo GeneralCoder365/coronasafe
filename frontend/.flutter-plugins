@@ -8,3 +8,6 @@ shared_preferences_linux=/Users/nicocarbone/flutter/.pub-cache/hosted/pub.dartla
 shared_preferences_macos=/Users/nicocarbone/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_macos-2.0.2/
 shared_preferences_web=/Users/nicocarbone/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_web-2.0.2/
 shared_preferences_windows=/Users/nicocarbone/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_windows-2.0.3/
+webview_flutter=/Users/nicocarbone/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter-3.0.0/
+webview_flutter_android=/Users/nicocarbone/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter_android-2.8.0/
+webview_flutter_wkwebview=/Users/nicocarbone/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter_wkwebview-2.7.1/

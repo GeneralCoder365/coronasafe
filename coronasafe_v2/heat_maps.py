@@ -39,9 +39,8 @@ def make_us_heat_map():
 
     plot(fig)
 
-# tester code
+# # tester code
 # make_us_heat_map()
-
 
 # makes state case graph
 def make_state_case_graph(state_input):
@@ -53,10 +52,7 @@ def make_state_case_graph(state_input):
 
     counties["features"][0]
 
-
-
     response = urllib.request.urlopen('https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv')
-
 
     url = "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv"
     df = pd.read_csv(url, converters={'fips': lambda x: str(x)})

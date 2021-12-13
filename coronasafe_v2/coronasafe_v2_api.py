@@ -8,11 +8,6 @@ import coronasafe_v2_backend as cs_backend
 app = Flask(__name__)
 api = Api(app)
 
-# test
-# @app.route("/")
-# def hello_world():
-#     return "<p>Hello, World!</p>"
-# actual http request handler
 
 @app.route('/getPlaces/', methods=["GET"])
 def search():

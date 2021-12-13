@@ -38,6 +38,7 @@ dependencies:
   dio: ^4.0.4
   implicitly_animated_reorderable_list: ^0.4.2
   fl_chart: ^0.40.2
+  webview_flutter: ^3.0.0
   
   
   
