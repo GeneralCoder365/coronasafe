@@ -1,6 +1,6 @@
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/material.dart';
-import 'main.dart';
+import 'package:google_maps_test/main.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding(
@@ -80,8 +80,8 @@ class OnboardingState extends State<Onboarding> {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => MyHomePage()));
                   } else {
-                    _controller.animateToPage(1,
-                        duration: Duration(milliseconds: 300),
+                    _controller.animateToPage(widget.pages.length - 1,
+                        duration: const Duration(milliseconds: 300),
                         curve: Curves.ease);
                   }
                 },

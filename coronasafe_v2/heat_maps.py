@@ -36,8 +36,10 @@ def make_us_heat_map():
                             )
 
     fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0}, geo=dict(bgcolor= '#4E5D6C',lakecolor='#4E5D6C'))
+    
+    fig.write_html('frontend/assets/temp-plot.html')
 
-    plot(fig)
+    # plot(fig)
 
 # # tester code
 # make_us_heat_map()

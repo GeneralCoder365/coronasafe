@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'main.dart';
+import 'package:google_maps_test/main.dart';
 import 'onboarding.dart';
 import 'onboardingsetup.dart';
 import 'package:after_layout/after_layout.dart';
