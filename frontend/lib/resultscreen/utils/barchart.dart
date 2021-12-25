@@ -1,7 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_test/utils/place.dart';
-import 'package:google_maps_test/main.dart';
+import 'package:coronasafe/utils/place.dart';
 
 class MyBarChart extends StatelessWidget {
   const MyBarChart({Key? key, required this.place}) : super(key: key);
@@ -63,7 +62,7 @@ class MyBarChart extends StatelessWidget {
           barRods: [
             BarChartRodData(
                 width: 40,
-                borderRadius: BorderRadius.all(Radius.circular(10)),
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
                 y: place.percentage,
                 colors: [Colors.greenAccent, Colors.yellow, Colors.redAccent])
           ],

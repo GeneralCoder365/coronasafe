@@ -1,6 +1,6 @@
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_test/main.dart';
+import 'package:coronasafe/main.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding(
@@ -48,12 +48,12 @@ class OnboardingState extends State<Onboarding> {
             right: MediaQuery.of(context).size.width / 2,
             child: Container(
               color: Colors.grey[999],
-              padding: EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(20.0),
               child: AnimatedSmoothIndicator(
                 activeIndex: indexter,
                 count: widget.pages.length,
                 effect: const WormEffect(
-                  activeDotColor: Colors.tealAccent,
+                  activeDotColor: Color(0xF86BBBDF),
                   dotHeight: 16,
                   spacing: 3,
                 ),
@@ -66,19 +66,21 @@ class OnboardingState extends State<Onboarding> {
             right: MediaQuery.of(context).size.width / 24,
             child: Container(
               color: Colors.grey[999],
-              padding: EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(20.0),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   elevation: 10,
-                  primary: Colors.tealAccent,
+                  primary: Color(0xF86BBBDF),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18.0),
                   ),
                 ),
                 onPressed: () {
                   if (widget.pages.length - 1 == indexter) {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => MyHomePage()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MyHomePage()));
                   } else {
                     _controller.animateToPage(widget.pages.length - 1,
                         duration: const Duration(milliseconds: 300),

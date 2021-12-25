@@ -1,15 +1,10 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 import './onboarding/onboardingcontrol.dart';
 import 'resultscreen/resultscreen.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorderable_list.dart';
 import './utils/place.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-import './onboarding/onboarding.dart';
 
 main() => runApp(const MyApp());
 
@@ -82,138 +77,134 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController textController = TextEditingController();
     return Scaffold(
-        backgroundColor: Colors.grey[800],
-        resizeToAvoidBottomInset: false,
-        body: SafeArea(
-          child: Center(
-            child: Column(
-              children: [
-                Neumorphic(
-                  style: NeumorphicStyle(
-                    color: Colors.grey[800],
-                    shadowDarkColor: Colors.grey[8],
-                    shadowLightColor: Colors.grey[700],
-                    shadowDarkColorEmboss: Colors.grey[850],
-                    shadowLightColorEmboss: Colors.grey[700],
-                    depth: -20,
-                    intensity: 1,
-                    surfaceIntensity: 1,
+      backgroundColor: Colors.grey[800],
+      resizeToAvoidBottomInset: false,
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              TextField(
+                onSubmitted: (query) {
+                  populateList(query);
+                },
+                decoration: InputDecoration(
+                  filled: true,
+                  hintText: 'Search For A Place You\'ve Been',
+                  hintStyle: const TextStyle(
+                    color: Color(0xF86BBBDF),
                   ),
-                  child: TextField(
-                    onSubmitted: (query) {
-                      populateList(query);
+                  fillColor: Colors.grey[700],
+                  border: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xFF616161)),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xFF616161)),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  prefixIcon: const Icon(
+                    Icons.search,
+                    color: Color(0xF86BBBDF),
+                  ),
+                ),
+                style: const TextStyle(
+                  color: Color(0xF86BBBDF),
+                ),
+                // ),
+              ),
+              Expanded(
+                child: SizedBox(
+                  height: 200.0,
+                  child: ImplicitlyAnimatedList<Place>(
+                    items: _suggestions,
+                    itemBuilder: (context, animation, item, i) {
+                      return buildItem(context, item);
                     },
-                    decoration: const InputDecoration(
-                      hintText: 'Search For A Place You\'ve Been',
-                      hintStyle: TextStyle(
-                        color: Colors.tealAccent,
-                      ),
-                      focusedBorder: InputBorder.none,
-                    ),
-                    style: const TextStyle(
-                      color: Colors.tealAccent,
-                    ),
+                    areItemsTheSame: (a, b) => a.name == b.name,
+                    updateItemBuilder: (context, animation, item) {
+                      return buildItem(context, item);
+                    },
                   ),
                 ),
-                Expanded(
-                  child: SizedBox(
-                    height: 200.0,
-                    child: ImplicitlyAnimatedList<Place>(
-                      items: _suggestions,
-                      itemBuilder: (context, animation, item, i) {
-                        return buildItem(context, item);
-                      },
-                      areItemsTheSame: (a, b) => a.name == b.name,
-                      updateItemBuilder: (context, animation, item) {
-                        return buildItem(context, item);
-                      },
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   Widget buildItem(BuildContext context, Place place) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
+        const SizedBox(
+          height: 19,
+          child: Divider(
+            color: Colors.black,
+            thickness: 1,
+          ),
+        ),
         InkWell(
           child: Padding(
             padding: const EdgeInsets.only(
               bottom: 5,
               top: 5,
             ),
-            child: ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.grey[800]),
-                elevation: MaterialStateProperty.all(8),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
+            child: Row(
+              children: [
+                const SizedBox(
+                  width: 36,
+                  child: AnimatedSwitcher(
+                    duration: Duration(milliseconds: 500),
+                    child: Icon(
+                      Icons.place,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
-              ),
-              onPressed: () {},
-              child: Row(
-                children: [
-                  const SizedBox(
-                    width: 36,
-                    child: AnimatedSwitcher(
-                      duration: Duration(milliseconds: 500),
-                      child: Icon(
-                        Icons.place,
-                        color: Colors.black,
-                      ),
-                    ),
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.grey[800]),
+                            elevation: MaterialStateProperty.all(0),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        ResultScreen(place: place)));
+                          },
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                place.name,
+                                style:
+                                    const TextStyle(color: Color(0xF86BBBDF)),
+                                textAlign: TextAlign.left,
+                              ),
+                              const SizedBox(height: 2),
+                              Text(
+                                place.address,
+                                textAlign: TextAlign.left,
+                                style:
+                                    const TextStyle(color: Color(0xF86BBBDF)),
+                              ),
+                            ],
+                          )),
+                    ],
                   ),
-                  Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(Colors.grey[800]),
-                              elevation: MaterialStateProperty.all(0),
-                            ),
-                            onPressed: () {
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          ResultScreen(place: place)));
-                            },
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  place.name,
-                                  style:
-                                      const TextStyle(color: Colors.tealAccent),
-                                  textAlign: TextAlign.left,
-                                ),
-                                const SizedBox(height: 2),
-                                Text(
-                                  place.address,
-                                  textAlign: TextAlign.left,
-                                  style:
-                                      const TextStyle(color: Colors.tealAccent),
-                                ),
-                              ],
-                            )),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
+            // ),
           ),
-        ),
+        )
       ],
     );
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_test/main.dart';
-import 'onboarding.dart';
+import 'package:coronasafe/main.dart';
 import 'onboardingsetup.dart';
 import 'package:after_layout/after_layout.dart';
 import 'package:shared_preferences/shared_preferences.dart';

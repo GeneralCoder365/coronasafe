@@ -1,15 +1,13 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'dart:convert';
-import 'package:google_maps_test/resultscreen/utils/barchart.dart';
+import 'package:coronasafe/resultscreen/utils/barchart.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
-import 'package:google_maps_test/main.dart';
-import 'package:google_maps_test/onboarding/onboarding.dart';
-import 'package:google_maps_test/utils/place.dart';
+import 'package:coronasafe/onboarding/onboarding.dart';
+import 'package:coronasafe/utils/place.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({Key? key, required this.place}) : super(key: key);
@@ -94,12 +92,12 @@ class _ResultScreenState extends State<ResultScreen> {
                     style: const TextStyle(
                       fontSize: 25,
                       fontFamily: 'Manrope',
-                      color: Colors.tealAccent,
+                      color: Color(0xF86BBBDF),
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 1.75,
+                  height: MediaQuery.of(context).size.height / 1.4,
                   child: Card(
                     elevation: 10,
                     shape: RoundedRectangleBorder(
@@ -132,7 +130,7 @@ class _ResultScreenState extends State<ResultScreen> {
                     style: TextStyle(
                       fontSize: 35,
                       fontFamily: 'Manrope',
-                      color: Colors.tealAccent,
+                      color: Color(0xF86BBBDF),
                     ),
                   ),
                 ),
@@ -154,7 +152,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       style: TextStyle(
                         fontSize: 35,
                         fontFamily: 'Manrope',
-                        color: Colors.tealAccent,
+                        color: Color(0xF86BBBDF),
                       ),
                     ),
                   ),
