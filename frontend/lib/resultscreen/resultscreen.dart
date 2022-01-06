@@ -14,10 +14,12 @@ class ResultScreen extends StatefulWidget {
   final Place place;
 
   @override
+  // ignore: no_logic_in_create_state
   State<ResultScreen> createState() => _ResultScreenState(place: place);
 }
 
 class _ResultScreenState extends State<ResultScreen> {
+  // ignore: unused_element
   _ResultScreenState({Key? key, required this.place}) : yesString = place.name;
   String yesString;
   final Place place;
@@ -77,22 +79,22 @@ class _ResultScreenState extends State<ResultScreen> {
   @override
   Widget build(BuildContext context) {
     return Onboarding(
-      backgroundColor: Colors.grey[800],
+      backgroundColor: const Color(0xFF121212),
       pages: [
         Pages(
           widget: SafeArea(
             child: Column(
               children: [
                 Container(
-                  padding: const EdgeInsets.only(
-                      bottom: 5, top: 20, left: 10, right: 50),
+                  padding:
+                      const EdgeInsets.only(bottom: 5, left: 10, right: 50),
                   width: double.infinity,
                   child: Text(
                     place.name,
                     style: const TextStyle(
                       fontSize: 25,
                       fontFamily: 'Manrope',
-                      color: Color(0xF86BBBDF),
+                      color: Color(0xFFadd8eb),
                     ),
                   ),
                 ),
@@ -102,7 +104,7 @@ class _ResultScreenState extends State<ResultScreen> {
                     elevation: 10,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(4)),
-                    color: Colors.grey[800],
+                    color: const Color(0xFF121212),
                     child: MyBarChart(place: place),
                   ),
                 ),
@@ -130,7 +132,7 @@ class _ResultScreenState extends State<ResultScreen> {
                     style: TextStyle(
                       fontSize: 35,
                       fontFamily: 'Manrope',
-                      color: Color(0xF86BBBDF),
+                      color: Color(0xFFadd8eb),
                     ),
                   ),
                 ),
@@ -148,11 +150,11 @@ class _ResultScreenState extends State<ResultScreen> {
                         bottom: 5, top: 20, left: 10, right: 50),
                     width: double.infinity,
                     child: const Text(
-                      'US Heat Map',
+                      'Covid Rates By State',
                       style: TextStyle(
                         fontSize: 35,
                         fontFamily: 'Manrope',
-                        color: Color(0xF86BBBDF),
+                        color: Color(0xFFadd8eb),
                       ),
                     ),
                   ),

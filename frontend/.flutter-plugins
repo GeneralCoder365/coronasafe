@@ -1,7 +1,11 @@
 # This is a generated file; do not edit or check into version control.
 flutter_plugin_android_lifecycle=/Users/nicocarbone/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-2.0.4/
 google_maps_flutter=/Users/nicocarbone/flutter/.pub-cache/hosted/pub.dartlang.org/google_maps_flutter-2.1.1/
+path_provider=/Users/nicocarbone/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-2.0.8/
+path_provider_android=/Users/nicocarbone/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.11/
+path_provider_ios=/Users/nicocarbone/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_ios-2.0.7/
 path_provider_linux=/Users/nicocarbone/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-2.1.2/
+path_provider_macos=/Users/nicocarbone/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_macos-2.0.4/
 path_provider_windows=/Users/nicocarbone/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-2.0.4/
 shared_preferences=/Users/nicocarbone/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-2.0.8/
 shared_preferences_linux=/Users/nicocarbone/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_linux-2.0.3/

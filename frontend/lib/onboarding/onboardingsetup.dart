@@ -29,7 +29,7 @@ class OnboardingScreen extends StatelessWidget {
               style: TextStyle(
                 fontFamily: 'CenturyGothic',
                 fontSize: 15,
-                color: Color(0xF86BBBDF),
+                color: Color(0xFFadd8eb),
               ),
             ),
           ),
@@ -60,7 +60,7 @@ class OnboardingScreen extends StatelessWidget {
               'That\'s why we made CoronaSafe, an app that calculates your risk of having contracted Covid-19',
               style: TextStyle(
                 fontSize: 15,
-                color: Color(0xF86BBBDF),
+                color: Color(0xFFadd8eb),
                 fontFamily: 'CenturyGothic',
               ),
             ),
@@ -79,7 +79,7 @@ class OnboardingScreen extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
       ),
       home: Onboarding(
-        backgroundColor: Colors.grey[800],
+        backgroundColor: const Color(0xFF121212),
         pages: onboardingPagesList,
       ),
     );

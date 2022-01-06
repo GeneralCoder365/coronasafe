@@ -1,6 +1,7 @@
+import 'package:coronasafe/homescreen/homescreen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:coronasafe/main.dart';
+// import 'package:coronasafe/main.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding(
@@ -53,7 +54,7 @@ class OnboardingState extends State<Onboarding> {
                 activeIndex: indexter,
                 count: widget.pages.length,
                 effect: const WormEffect(
-                  activeDotColor: Color(0xF86BBBDF),
+                  activeDotColor: Color(0xFFadd8eb),
                   dotHeight: 16,
                   spacing: 3,
                 ),
@@ -70,7 +71,7 @@ class OnboardingState extends State<Onboarding> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   elevation: 10,
-                  primary: Color(0xF86BBBDF),
+                  primary: const Color(0xFFadd8eb),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18.0),
                   ),
@@ -87,10 +88,10 @@ class OnboardingState extends State<Onboarding> {
                         curve: Curves.ease);
                   }
                 },
-                child: Text(
+                child: const Text(
                   'Finish',
                   style: TextStyle(
-                    color: Colors.grey[800],
+                    color: Color(0xFF121212),
                   ),
                 ),
               ),

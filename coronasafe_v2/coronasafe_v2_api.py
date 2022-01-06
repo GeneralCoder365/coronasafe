@@ -1,7 +1,6 @@
 from flask import Flask
 from flask import request
 from flask_restful import Resource, Api, reqparse
-# getting the api key
 import os
 import coronasafe_v2_backend as cs_backend
 

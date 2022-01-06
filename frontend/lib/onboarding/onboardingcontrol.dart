@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:coronasafe/main.dart';
+import 'package:coronasafe/homescreen/homescreen.dart';
 import 'onboardingsetup.dart';
 import 'package:after_layout/after_layout.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -32,9 +32,9 @@ class CheckOnboardingState extends State<CheckOnboarding>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[800],
-      body: const Center(
+    return const Scaffold(
+      backgroundColor: Color(0xFF121212),
+      body: Center(
         child: Text('Loading...'),
       ),
     );
